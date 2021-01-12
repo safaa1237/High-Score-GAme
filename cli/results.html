@@ -1,0 +1,140 @@
+﻿<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>SCENE Benchmark Results</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+	</head>
+	<body>
+		Select JSON Files with results: <input type="file" id="files" name="files[]" multiple>
+		<button id="clear">Clear</button><br>
+		<div style="width: 1400px; height: 400px">
+			<canvas id="chart" width="1400" height="400"></canvas>
+		</div>
+		<script>
+			if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+				alert('The File APIs are not fully supported in this browser.');
+			}
+
+			// Chart and chart context
+			var chart = undefined;
+			var ctx = document.getElementById('chart').getContext('2d');
+
+			// Contains all loaded result sets
+			var dataSets = {};
+
+			// The names of all times that are displayed/loaded from result sets
+			var dataPoints = [
+				'ImportSaveTime',
+				'ProcessScansTime',
+				'RegistrationCloudToCloudTime',
+				'RegistrationTopViewTime',
+				'ProjectPointCloudTime',
+				'LoadScansTime',
+				'ProjectPointCloudRenderTime',
+				'SceneBenchmarkTime'
+			];
+
+			// Handler that is triggered when the user selects one or more files
+			function handleFileSelect(evt) {
+				var files = evt.target.files;
+				for (var i = 0; i<files.length; i++) {
+					readFile(files[i]);
+				};
+				document.getElementById('files').value= null;
+			}
+
+			// Reads a file and adds it to currently loaded the data sets
+			function readFile(file) {
+				var reader = new FileReader();
+				reader.onloadend = function() {
+					try {
+						var parsed = JSON.parse(reader.result);
+						loadDataSet(file.name, parsed);
+					} catch (error) {
+						console.error('Failed to parse file:', error);
+					}
+				};
+				reader.readAsText(file);
+			}
+
+			// Loads a parsed data set with name
+			function loadDataSet(name, data) {
+				parseIntegers(data);
+				data.fileName = name;
+				dataSets[name] = data;
+				drawData();
+			}
+
+			// Parses all known times in a data set to real integer numbers
+			function parseIntegers(data) {
+				dataPoints.forEach(function(key) {
+					data[key] = parseInt(data[key]);
+				});
+			}
+
+			// Removes all loaded data sets
+			function clear() {
+				dataSets = {};
+				drawData();
+			}
+
+			// Redraw all loaded data set
+			function drawData() {
+				var barChartData = {labels: dataPoints, datasets: []};
+				var keys = Object.keys(dataSets);
+				keys.forEach(function (dataSetKey) {
+					var data = dataPoints.map(function(pointKey) {
+						return dataSets[dataSetKey][pointKey];
+					});
+					barChartData.datasets.push({
+						label: dataSetKey,
+						data: data,
+						backgroundColor: '#' + colorFromStr(dataSets[dataSetKey].fileName)
+					});
+				});
+				if (chart) {
+					chart.destroy();
+				}
+				chart = new Chart(ctx, {
+					type: 'bar',
+					data: barChartData,
+					options: {
+						legend: {
+							position: 'top',
+						},
+						title: {
+							display: true,
+							text: 'SCENE Benchmark Results'
+						}
+					}
+				});
+			}
+
+			// Hashes a string to an 32bit integer
+			// https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript-jquery
+			function hash(str) {
+				var hash = 0, i, chr;
+				if (str.length === 0)
+					return hash;
+				for (i = 0; i < str.length; i++) {
+					chr = str.charCodeAt(i);
+					hash = ((hash << 5) - hash) + chr;
+					hash |= 0;
+				}
+				return hash;
+			}
+
+			// This helper generates a unique color for each string/data set
+			function colorFromStr(str) {
+				var h = hash(str);
+				
+				// Convert the hash to a hex color string
+				var c = (h & 0x00FFFFFF).toString(16).toUpperCase();
+				return "00000".substring(0, 6 - c.length) + c;
+			}
+
+			document.getElementById('files').addEventListener('change', handleFileSelect, false);
+			document.getElementById('clear').addEventListener("click", clear);
+		</script>
+	</body>
+</html>
