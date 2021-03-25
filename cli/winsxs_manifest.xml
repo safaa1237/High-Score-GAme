@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
-	<dependency>
-		<dependentAssembly>
-			<assemblyIdentity type="win32" name="FARO.SCENE.Redistributable" version="2.0.14.0" processorArchitecture="amd64" publicKeyToken="1d23f5635ba800ab"></assemblyIdentity>
-		</dependentAssembly>
-	</dependency>
-</assembly>
