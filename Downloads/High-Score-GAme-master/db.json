@@ -1,0 +1,95 @@
+{
+  "scores": [
+    {
+      "name": "safaa",
+      "score": -30,
+      "timesClicked": 4,
+      "avg": -7,
+      "id": 1
+    },
+    {
+      "name": "person2",
+      "score": 1,
+      "timesClicked": 5,
+      "avg": 0,
+      "id": 2
+    },
+    {
+      "name": "person3",
+      "score": 147,
+      "timesClicked": 2,
+      "avg": 74,
+      "id": 3
+    },
+    {
+      "name": "person4",
+      "score": -189,
+      "timesClicked": 10,
+      "avg": -19,
+      "id": 4
+    },
+    {
+      "name": "Saf",
+      "score": -140,
+      "timesClicked": 10,
+      "avg": -14,
+      "id": 5
+    },
+    {
+      "name": "asda",
+      "score": 69,
+      "timesClicked": 1,
+      "avg": 69,
+      "id": 6
+    },
+    {
+      "name": "asda",
+      "score": 0,
+      "timesClicked": 0,
+      "avg": null,
+      "id": 7
+    },
+    {
+      "name": "asd",
+      "score": 17,
+      "timesClicked": 1,
+      "avg": 17,
+      "id": 8
+    },
+    {
+      "name": "asda",
+      "score": 0,
+      "timesClicked": 0,
+      "avg": null,
+      "id": 9
+    },
+    {
+      "name": "asdasd",
+      "score": -99,
+      "timesClicked": 2,
+      "avg": -49,
+      "id": 10
+    },
+    {
+      "name": "asdasd",
+      "score": -44,
+      "timesClicked": 1,
+      "avg": -44,
+      "id": 11
+    },
+    {
+      "name": "asd",
+      "score": -106,
+      "timesClicked": 2,
+      "avg": -53,
+      "id": 12
+    },
+    {
+      "name": "adADQW",
+      "score": -186,
+      "timesClicked": 9,
+      "avg": -21,
+      "id": 13
+    }
+  ]
+}

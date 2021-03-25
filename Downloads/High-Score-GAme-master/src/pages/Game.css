@@ -1,0 +1,53 @@
+ul li {
+  list-style: none;
+}
+
+p {
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
+}
+
+.container {
+  margin-top: 200px;
+}
+
+.game-container {
+  margin-top: 100px;
+  padding: 60px 0;
+  text-align: center;
+  font-family: helvetica neue, Helvetica, Arial, sans-serif;
+  width: 60%;
+  margin: auto;
+  border-radius: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.game-container p {
+  font-size: 18px;
+}
+
+.game {
+  margin-top: 100px;
+}
+.score,
+#adButton {
+  margin-left: 20%;
+  float: left;
+  display: inline;
+}
+#dices {
+  width: 20%;
+  top: 0px;
+  margin: auto;
+  margin-bottom: -100px;
+}
+
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  margin-top: 20px;
+}
